@@ -1,34 +1,78 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# CRUD Application
 
-## Getting Started
+This is a CRUD (Create, Read, Update, Delete) application built with React, Next.js, Prisma, and MongoDB. It allows users to manage topics by adding, editing, and deleting them.
 
-First, run the development server:
+## Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+Before running the application, make sure you have the following installed:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Node.js
+- MongoDB
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## API Documentation
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Add Topic
 
-## Learn More
+- URL: `/api/topics`
+- Method: `POST`
+- Description: Adds a new topic to the database.
+- Request Body:
+  - `title` (required): The title of the topic.
+  - `description` (required): The description of the topic.
 
-To learn more about Next.js, take a look at the following resources:
+### Get All Topics
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- URL: `/api/topics`
+- Method: `GET`
+- Description: Retrieves all topics from the database.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Get Topic by ID
 
-## Deploy on Vercel
+- URL: `/api/topics/:id`
+- Method: `GET`
+- Description: Retrieves a specific topic by its ID.
+- URL Parameters:
+  - `id` (required): The ID of the topic.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Update Topic
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- URL: `/api/topics/:id`
+- Method: `PUT`
+- Description: Updates a specific topic by its ID.
+- URL Parameters:
+  - `id` (required): The ID of the topic.
+- Request Body:
+  - `newTitle` (required): The updated title of the topic.
+  - `newDescription` (required): The updated description of the topic.
+
+### Delete Topic
+
+- URL: `/api/topics`
+- Method: `DELETE`
+- Description: Deletes a specific topic by its ID.
+- Query Parameters:
+  - `id` (required): The ID of the topic.
+
+## Components
+
+### AddTopic
+
+This component allows users to add a new topic. It includes a form with input fields for the title and description. On submission, the data is sent to the `/api/topics` endpoint to create a new topic.
+
+### EditTopic
+
+This component allows users to edit an existing topic. It retrieves the topic data based on the provided ID and pre-fills the form fields with the current title and description. On submission, the updated data is sent to the `/api/topics/:id` endpoint to update the topic.
+
+### Navbar
+
+The navbar component displays a navigation bar with links to the home page and the "Add Topic" page.
+
+### RemoveBtn
+
+This component renders a delete button for each topic. Clicking the button triggers a confirmation prompt, and if confirmed, it sends a request to the `/api/topics` endpoint to delete the corresponding topic.
+
+### TopicsList
+
+This component fetches all topics from the `/api/topics` endpoint and displays them in a list format. Each topic is rendered with its title, description, and options to delete or edit the topic.
+
+Feel free to explore and customize the code according to your requirements. Happy coding!
